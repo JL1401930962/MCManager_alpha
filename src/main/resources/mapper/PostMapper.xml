@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mcmanager.mapper.PostMapper">
+    <resultMap id="BaseResultMap" type="com.example.mcmanager.entity.Post">
+        <id column="post_id" property="post_id" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="head" property="head" jdbcType="LONGVARCHAR"/>
+        <result column="post_time" property="post_time" jdbcType="TIMESTAMP"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="picture" property="picture" jdbcType="LONGVARCHAR"/>
+        <result column="songid" property="songid" jdbcType="INTEGER"/>
+        <result column="comment_num" property="comment_num" jdbcType="INTEGER"/>
+        <result column="like_num" property="like_num" jdbcType="INTEGER"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        post_id, userid, username, head, post_time, content, picture, songid, comment_num, like_num
+    </sql>
+
+
+    <select id="getAllPost" resultType="com.example.mcmanager.entity.Post" resultMap="BaseResultMap">
+        select * from post
+    </select>
+
+    <select id="getAllPostById" resultType="com.example.mcmanager.entity.Post" resultMap="BaseResultMap">
+        select * from post where userid=#{userid}
+    </select>
+
+    <insert id="addPost" parameterType="com.example.mcmanager.entity.Post">
+        insert into post
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">userid,</if>
+            <if test="username != null">username,</if>
+            <if test="head != null">head,</if>
+            <if test="post_time != null">post_time,</if>
+            <if test="content != null">content,</if>
+            <if test="picture != null">picture,</if>
+            <if test="songid != null">songid,</if>
+            <if test="comment_num != null">comment_num,</if>
+            <if test="like_num != null">like_num,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">#{userid},</if>
+            <if test="username != null">#{username},</if>
+            <if test="head != null">#{head},</if>
+            <if test="post_time != null">#{post_time},</if>
+            <if test="content != null">#{content},</if>
+            <if test="picture != null">#{picture},</if>
+            <if test="songid != null">#{songid},</if>
+            <if test="comment_num != null">#{comment_num},</if>
+            <if test="like_num != null">#{like_num},</if>
+        </trim>
+
+    </insert>
+
+    <delete id="deletePostById" parameterType="com.example.mcmanager.entity.Post">
+        delete from post where post_id=#{post_id}
+    </delete>
+</mapper>

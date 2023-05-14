@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mcmanager.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.mcmanager.entity.User">
+        <id column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="head" property="head" jdbcType="VARCHAR"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="age" property="age" jdbcType="INTEGER"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        userid, username, password, head, signature, sex, age
+    </sql>
+
+    <select id="getAllUser" resultType="com.example.mcmanager.entity.User">
+        select * from user
+    </select>
+
+    <select id="getUserById" resultType="com.example.mcmanager.entity.User">
+        select * from user where userid=#{userid}
+    </select>
+
+    <select id="getUserHead" resultType="java.lang.String">
+        select head from user where userid=#{userid}
+    </select>
+
+    <insert id="addUser" parameterType="com.example.mcmanager.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">userid,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="head != null">head,</if>
+            <if test="signature != null">signature,</if>
+            <if test="sex != null">sex,</if>
+            <if test="age != null">age,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">#{userid},</if>
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="head != null">#{head},</if>
+            <if test="signature != null">#{signature},</if>
+            <if test="sex != null">#{sex},</if>
+            <if test="age != null">#{age},</if>
+        </trim>
+    </insert>
+
+    <delete id="deleteUserById" parameterType="com.example.mcmanager.entity.User">
+        delete from user where userid=#{userid}
+    </delete>
+
+    <update id="updateUser" parameterType="com.example.mcmanager.entity.User">
+        update user set
+        <trim suffixOverrides=",">
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="signature != null">signature=#{signature},</if>
+            <if test="head != null">head=#{head},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="age != null">age=#{age}</if>
+        </trim>
+        where userid=#{userid}
+    </update>
+
+    <select id="login" resultType="com.example.mcmanager.entity.User">
+        select userid, password from user where userid=#{userid} and password=#{password}
+    </select>
+</mapper>

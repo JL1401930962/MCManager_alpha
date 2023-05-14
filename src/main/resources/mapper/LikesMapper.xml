@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mcmanager.mapper.LikesMapper">
+    <resultMap id="BaseResultMap" type="com.example.mcmanager.entity.Likes">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="post_id" property="post_id" jdbcType="INTEGER"/>
+        <result column="userid" property="userid" jdbcType="INTEGER"/>
+        <result column="like_state" property="like_state" jdbcType="BOOLEAN"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, post_id, userid, like_state
+    </sql>
+
+    <select id="getAllLikes" resultType="com.example.mcmanager.entity.Likes" resultMap="BaseResultMap">
+        select * from likes
+    </select>
+
+    <select id="getLikesByPostId" resultType="com.example.mcmanager.entity.Likes" resultMap="BaseResultMap">
+        select * from likes where post_id=#{post_id}
+    </select>
+
+    <select id="getLikeStateByPostIdAndUserId" resultType="com.example.mcmanager.entity.Likes">
+        select like_state from likes where post_id=#{post_id} and userid=#{userid}
+    </select>
+
+    <update id="updateLikeStateByPostIdAndUserId" parameterType="com.example.mcmanager.entity.Likes">
+        update likes set like_state=#{like_state} where post_id=#{post_id} and userid=#{userid}
+    </update>
+</mapper>
