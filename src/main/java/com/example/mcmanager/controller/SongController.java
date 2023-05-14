@@ -52,7 +52,7 @@ public class SongController {
     // 添加歌曲信息
     @PostMapping("/addSong")
     public boolean addSong(@RequestBody Song song){
-        return songService.save(song);
+        return songService.addSong(song);
     }
 
     // 删除歌曲信息
@@ -66,4 +66,11 @@ public class SongController {
     public Song getSongById(@Param("songid") Integer songid){
         return songService.getSongById(songid);
     }
+
+    // 确认歌曲id存在
+    @PostMapping("/checkSongId")
+    public boolean checkSongId(@RequestParam("songid") Integer songid){
+        return songService.checkSongId(songid);
+    }
+
 }

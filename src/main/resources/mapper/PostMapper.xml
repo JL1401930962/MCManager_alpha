@@ -22,7 +22,7 @@
 
 
     <select id="getAllPost" resultType="com.example.mcmanager.entity.Post" resultMap="BaseResultMap">
-        select * from post
+        select * from post order by post_id desc
     </select>
 
     <select id="getAllPostById" resultType="com.example.mcmanager.entity.Post" resultMap="BaseResultMap">

@@ -14,4 +14,8 @@ public interface SongService extends IService<Song> {
     Song getSongById(Integer songid);
 
     boolean updateSongById(Integer songid);
+
+    boolean addSong(Song song);
+
+    boolean checkSongId(Integer songid);
 }

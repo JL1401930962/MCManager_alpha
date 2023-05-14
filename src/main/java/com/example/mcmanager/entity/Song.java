@@ -19,6 +19,7 @@ public class Song {
     private Integer artistid;
     private String artistname;
     private String icon;
+    private long size;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -79,5 +80,13 @@ public class Song {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
     }
 }

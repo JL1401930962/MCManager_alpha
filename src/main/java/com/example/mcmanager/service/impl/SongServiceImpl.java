@@ -36,4 +36,14 @@ public class SongServiceImpl extends ServiceImpl<SongMapper, Song>
         return songMapper.updateSongById(songid);
     }
 
+    @Override
+    public boolean addSong(Song song) {
+        return songMapper.addSong(song);
+    }
+
+    @Override
+    public boolean checkSongId(Integer songid) {
+        return songMapper.checkSongId(songid);
+    }
+
 }

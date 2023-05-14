@@ -27,6 +27,10 @@
         select * from song where songid=#{songid}
     </select>
 
+    <select id="checkSongId" resultType="java.lang.Boolean">
+        select exists(select 1 from song where songid=#{songid})
+    </select>
+
     <update id="updateSong" parameterType="com.example.mcmanager.entity.Song">
         update song set
         <if test="songurl != null">songurl=#{songurl},</if>

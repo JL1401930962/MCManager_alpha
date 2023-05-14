@@ -109,7 +109,6 @@ public class PostController {
         return postService.addPost(post);
     }
 
-
     /**
      * 后台管理接口：删除帖子
      * @param post
