@@ -99,7 +99,7 @@ public class CommentController {
      * @param comment_id
      * @return
      */
-    @PostMapping("delete")
+    @GetMapping("delete")
     public boolean deleteComment(Integer comment_id){
         return commentService.deleteComment(comment_id);
     }
